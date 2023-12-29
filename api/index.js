@@ -1,7 +1,12 @@
-import express from 'express';
+const express=require('express');
+require('dotenv').config()
+const dbConnect = require('./dbConnect');
 
 const app=express();
 
-app.listen(3000,()=>{
-    console.log('Server is running on port 3000');
+const PORT = process.env.PORT
+
+app.listen(PORT,()=>{
+    dbConnect();
+    console.log(`Server is running successfully on port ${PORT}`);
 })
