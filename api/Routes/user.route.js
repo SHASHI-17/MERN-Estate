@@ -1,9 +1,7 @@
 const router=require('express').Router();
-const { test } = require('../Controllers/user.controller.js');
+const { updateUser } = require('../Controllers/user.controller.js');
+const { verifyToken } = require('../utils/verifyUser.js');
 
-
-
-router.get('/test',test);
-
+router.post('/update/:id',verifyToken,updateUser);
 
 module.exports=router
