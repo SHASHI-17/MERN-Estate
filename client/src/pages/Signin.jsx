@@ -8,7 +8,6 @@ const Signin = () => {
 
   const [formData,setFormData]=useState({});
   const {loading,error,currentUser}=useSelector(state => state.user)
-  console.log(currentUser);
   const dispatch = useDispatch();
   const navigate=useNavigate()
   const handleChange = (e)=>{
