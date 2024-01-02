@@ -1,5 +1,6 @@
 import { useEffect, useState } from 'react'
 import { useNavigate } from 'react-router-dom';
+import ListingItem from '../components/ListingItem';
 
 const Search = () => {
     const navigate = useNavigate();
@@ -19,7 +20,7 @@ const Search = () => {
     console.log('listings',listings);
     useEffect(() => {
         const urlParams = new URLSearchParams(location.search);
-        console.log('inside useEffect', urlParams);
+        // console.log('inside useEffect', urlParams);
         const searchTermFromUrl = urlParams.get('searchTerm');
         const typeFromUrl = urlParams.get('type');
         const parkingFromUrl = urlParams.get('parking');
@@ -56,7 +57,7 @@ const Search = () => {
 
     }, [location.search])
 
-    console.log(sidebardata);
+    // console.log(sidebardata);
 
     const handleChange = (e) => {
         if (e.target.id === 'all' || e.target.id === 'rent' || e.target.id === 'sale') {
@@ -90,7 +91,7 @@ const Search = () => {
         urlParams.set('order', sidebardata.order);
         urlParams.set('sort', sidebardata.sort);
         const searchQuery = urlParams.toString();
-        console.log('submit k andar wala ', searchQuery);
+        // console.log('submit k andar wala ', searchQuery);
         navigate(`/search?${searchQuery}`);
     }
 
@@ -157,8 +158,21 @@ const Search = () => {
                         uppercase hover:opacity-95 '>Search</button>
                 </form>
             </div>
-            <div className="">
+            <div className='flex-1 '>
                 <h1 className='text-3xl font-semibold border-b p-3 text-slate-700 mt-5'>Listing results : </h1>
+                <div className="p-7 flex flex-wrap gap-4">
+                    {!loading && listings.length ===0 && (
+                        <p className='text-xl text-slate-700'>No Listings found!</p>
+                    )}
+                    {loading && (
+                        <p className='text-xl text-slate-700 text-center w-full'>Loading...</p>
+                    )}
+                    {
+                        !loading && listings && listings.map((listing)=>{
+                          return  <ListingItem key={listing._id} listing={listing}/>
+                        })
+                    }
+                </div>
             </div>
         </div>
     )
