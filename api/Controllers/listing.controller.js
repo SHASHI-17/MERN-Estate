@@ -60,7 +60,7 @@ exports.getListings=async (req,res,next)=>{
             let offer=req.query.offer;
 
             if(offer === undefined || offer === 'false'){
-                offer ={$in :[false,true]}
+                offer ={$in :[false,true]} // isska mtlb woh dono dekhna chahta in default case offer wale b no offer wale b
             }
 
             let furnished = req.query.furnished;
@@ -76,7 +76,7 @@ exports.getListings=async (req,res,next)=>{
 
             let type=req.query.type;
 
-            if(type === undefined || type==='all'){
+            if(type === undefined || type ==='all'){
                 type={$in :['sale','rent']}
             }
 
@@ -84,8 +84,10 @@ exports.getListings=async (req,res,next)=>{
             const sort =req.query.sort || 'createdAt';
             const order=req.query.order || 'desc';
 
+            console.log({offer,furnished,parking,type});
+            
             const listings =await Listing.find({
-                name:{$regex : searchTerm,$options:'i'},
+                name:{$regex : searchTerm,$options:'i'}, // options of i means both upper and lower
                 offer,
                 furnished,
                 parking,

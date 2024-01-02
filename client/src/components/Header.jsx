@@ -11,13 +11,16 @@ function Header() {
     const handleSubmit =async (e)=>{
         e.preventDefault();
         const urlParams = new URLSearchParams(window.location.search);
+        console.log(window.location.search);
         urlParams.set('searchTerm',searchTerm);
         const searchQuery=urlParams.toString();
+        console.log(searchQuery);
         navigate(`/search?${searchQuery}`);
     }
 
     useEffect(()=>{
-        const urlParams = new URLSearchParams(window.location.search);
+        // ye search tab ko change krne ko banaya 
+        const urlParams = new URLSearchParams(location.search);
         const searchTermFromUrl = urlParams.get('searchTerm');
         if(searchTermFromUrl){
             setSearchTerm(searchTermFromUrl);
