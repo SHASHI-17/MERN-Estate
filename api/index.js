@@ -1,6 +1,5 @@
 const express=require('express');
 const path=require('path');
-const __dirname=path.resolve();
 const app=express();
 require('dotenv').config()
 const dbConnect = require('./dbConnect.js');
@@ -8,8 +7,8 @@ const userRouter = require('./Routes/user.route.js')
 const authRouter=require('./Routes/auth.route.js')
 const listingRouter=require('./Routes/listing.route.js')
 const cookieParser=require('cookie-parser');
-const path=require('path')
 
+const __dirname=path.resolve();
 app.use(express.json())
 app.use(cookieParser())
 app.use('/api/user',userRouter);
@@ -31,8 +30,8 @@ app.use((err,req,res,next)=>{
     })
 })
 
-const PORT = process.env.PORT
-app.listen(PORT,()=>{
+
+app.listen(3000,()=>{
     dbConnect();
     console.log(`Server is running successfully on port ${PORT}`);
 })
