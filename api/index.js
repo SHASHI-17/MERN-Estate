@@ -8,8 +8,8 @@ const authRouter = require('./Routes/auth.route.js');
 const listingRouter = require('./Routes/listing.route.js');
 const cookieParser = require('cookie-parser');
 
-// Do not declare __dirname explicitly
-// const __dirname = path.resolve(); // Remove this line
+// Use a different variable name for your custom base directory
+const baseDir = path.resolve();
 
 app.use(express.json());
 app.use(cookieParser());
@@ -17,9 +17,9 @@ app.use('/api/user', userRouter);
 app.use('/api/auth', authRouter);
 app.use('/api/listing', listingRouter);
 
-app.use(express.static(path.join(__dirname, '/client/dist')));
+app.use(express.static(path.join(baseDir, '/client/dist')));
 app.get('*', (req, res) => {
-    res.sendFile(path.join(__dirname, 'client', 'dist', 'index.html'));
+    res.sendFile(path.join(baseDir, 'client', 'dist', 'index.html'));
 });
 
 app.use((err, req, res, next) => {
@@ -32,7 +32,7 @@ app.use((err, req, res, next) => {
     });
 });
 
-const PORT = 3000; // Assuming you wanted to use PORT variable
+const PORT = 3000;
 app.listen(PORT, () => {
     dbConnect();
     console.log(`Server is running successfully on port ${PORT}`);
