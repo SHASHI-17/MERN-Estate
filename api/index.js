@@ -1,4 +1,6 @@
 const express=require('express');
+const path=require('path');
+const __dirname=path.resolve();
 const app=express();
 require('dotenv').config()
 const dbConnect = require('./dbConnect.js');
@@ -6,6 +8,7 @@ const userRouter = require('./Routes/user.route.js')
 const authRouter=require('./Routes/auth.route.js')
 const listingRouter=require('./Routes/listing.route.js')
 const cookieParser=require('cookie-parser');
+const path=require('path')
 
 app.use(express.json())
 app.use(cookieParser())
@@ -13,6 +16,10 @@ app.use('/api/user',userRouter);
 app.use('/api/auth',authRouter);
 app.use('/api/listing',listingRouter);
 
+app.use(express.static(path.join(__dirname,'/client/dist')))
+app.get('*',(req,res)=>{
+    res.sendFile(path.join(__dirname,'client','dist','index.html'));
+});
 
 app.use((err,req,res,next)=>{
     const statusCode=err.statusCode || 500;

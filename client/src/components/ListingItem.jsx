@@ -3,11 +3,11 @@ import { Link } from 'react-router-dom'
 
 const ListingItem = ({listing}) => {
   return (
-    <div className='bg-white shadow-md w-full sm:w-[320px]
+    <div className='bg-white shadow-md w-[320px] sm:w-[320px]
      hover:shadow-lg transition-all duration-300 overflow-hidden rounded-lg'>
         <Link to={`/listing/${listing._id}`}>
                 <img src={listing.imageUrls[0] || 'https://images.pexels.com/photos/186077/pexels-photo-186077.jpeg?auto=compress&cs=tinysrgb&w=600'} alt={listing.name} 
-                    className='h-[320px] sm:[220px] w-full object-cover hover:scale-105 transition-all duration-300'
+                    className='h-[320px] sm:h-[220px] w-full object-cover hover:scale-105 transition-all duration-300'
                 />
                 <div className='p-3 flex flex-col gap-2'>
                     <p className='text-lg font-semibold text-slate-700 truncate'>{listing.name}</p>
