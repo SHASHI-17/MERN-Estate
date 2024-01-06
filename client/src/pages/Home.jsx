@@ -70,20 +70,22 @@ export default function Home() {
 
       {/* swiper */}
       <Swiper navigation>
-        {offerListings &&
-          offerListings.length > 0 &&
-          offerListings.map((listing) => (
-            <SwiperSlide key={listing._id} >
+        {/* {offerListings && */}
+          {/* offerListings.length > 0 && */}
+          {/* offerListings.map((listing,i) => ( */}
+            <SwiperSlide  >
               <div
                 style={{
-                  background: `url(${listing.imageUrls[0]}) center no-repeat`,
-                  backgroundSize: 'contain',
+                  background: `url(${"https://i.postimg.cc/xjMgP6hM/hp-hero-desktop-xl.png"}) center no-repeat`,
+                  backgroundSize: 'cover',
+                  width:'100vw'
                 }}
-                className='h-[500px]'
-                key={listing._id}
+                className={`h-[500px] sm:object-contain`}
+                // key={listing._id}
               ></div>
             </SwiperSlide>
-          ))}
+          {/* ) */}
+          {/* )} */}
       </Swiper>
 
       {/* listing results for offer, sale and rent */}
@@ -95,7 +97,7 @@ export default function Home() {
               <h2 className='text-2xl font-semibold text-slate-600'>Recent offers</h2>
               <Link className='text-sm text-blue-800 hover:underline' to={'/search?offer=true'}>Show more offers</Link>
             </div>
-            <div className='flex flex-nowrap gap-4 w-full h-full'>
+            <div className='flex flex-nowrap sm:flex-wrap md:flex-nowrap  gap-4 w-full h-full'>
               {offerListings.map((listing) => (
                 <ListingItem listing={listing} key={listing._id} />
               ))}
@@ -108,7 +110,7 @@ export default function Home() {
               <h2 className='text-2xl font-semibold text-slate-600'>Recent places for rent</h2>
               <Link className='text-sm text-blue-800 hover:underline' to={'/search?type=rent'}>Show more places for rent</Link>
             </div>
-            <div className='flex flex-nowrap gap-4 w-full h-full'>
+            <div className='flex flex-nowrap md:flex-nowrap sm:flex-wrap gap-4 w-full h-full'>
               {rentListings.map((listing) => (
                 <ListingItem listing={listing} key={listing._id} />
               ))}
@@ -121,7 +123,7 @@ export default function Home() {
               <h2 className='text-2xl font-semibold text-slate-600'>Recent places for sale</h2>
               <Link className='text-sm text-blue-800 hover:underline' to={'/search?type=sale'}>Show more places for sale</Link>
             </div>
-            <div className='flex flex-nowrap gap-4 w-full h-full'>
+            <div className='flex flex-nowrap sm:flex-wrap md:flex-nowrap gap-4 w-full h-full'>
               {saleListings.map((listing) => (
                 <ListingItem listing={listing} key={listing._id} />
               ))}
