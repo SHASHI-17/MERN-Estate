@@ -110,7 +110,7 @@ export default function Home() {
               <h2 className='text-2xl font-semibold text-slate-600'>Recent places for rent</h2>
               <Link className='text-sm text-blue-800 hover:underline' to={'/search?type=rent'}>Show more places for rent</Link>
             </div>
-            <div className='flex flex-nowrap md:flex-nowrap sm:flex-wrap gap-4 w-full h-full'>
+            <div className='flex flex-wrap sm:flex-wrap md:flex-nowrap  gap-4 w-full h-full'>
               {rentListings.map((listing) => (
                 <ListingItem listing={listing} key={listing._id} />
               ))}
@@ -123,7 +123,7 @@ export default function Home() {
               <h2 className='text-2xl font-semibold text-slate-600'>Recent places for sale</h2>
               <Link className='text-sm text-blue-800 hover:underline' to={'/search?type=sale'}>Show more places for sale</Link>
             </div>
-            <div className='flex flex-nowrap sm:flex-wrap md:flex-nowrap gap-4 w-full h-full'>
+            <div className='flex flex-wrap sm:flex-wrap md:flex-nowrap  gap-4 w-full h-full'>
               {saleListings.map((listing) => (
                 <ListingItem listing={listing} key={listing._id} />
               ))}
